@@ -5,49 +5,207 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>HMCS Frédérick Rolette – Tobacco & Vaping Cessation Resources</title>
   <style>
-    :root{
-      --navy:#0a2a4a;
-      --crest-blue:#1e6bd6;
-      --bg:#f3f4f6;
-      --text:#0f172a;
-      --muted:#475569;
-      --card:#ffffff;
-      --radius:16px;
-      --shadow:0 8px 20px rgba(0,0,0,.06);
+    :root {
+      --navy: #0a2a4a;
+      --navy-light: #133858;
+      --crest-blue: #1e6bd6;
+      --crest-blue-light: #2b7de9;
+      --accent-gold: #d4a843;
+      --bg: #f0f2f5;
+      --text: #0f172a;
+      --muted: #475569;
+      --card: #ffffff;
+      --card-border: #e2e5ea;
+      --radius: 18px;
+      --radius-sm: 12px;
+      --shadow-sm: 0 2px 8px rgba(10,42,74,.06);
+      --shadow-md: 0 8px 24px rgba(10,42,74,.08);
+      --shadow-lg: 0 12px 36px rgba(10,42,74,.12);
+      --transition: .2s cubic-bezier(.4,0,.2,1);
     }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.45}
-    .wrap{max-width:880px;margin:0 auto;padding:20px}
-    header{
-      background:linear-gradient(90deg,var(--crest-blue) 0%, var(--navy) 100%);
-      color:#fff;border-radius:0 0 var(--radius) var(--radius);
-      box-shadow:var(--shadow);padding:18px 16px;
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .brand{display:flex;align-items:center;gap:14px}
-    .brand img{width:56px;height:56px;object-fit:contain;flex:0 0 56px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.2))}
-    .title{font-size:1.5rem;font-weight:800;margin:0;letter-spacing:.2px}
-    .subtitle{font-size:1.05rem;opacity:.95;margin:4px 0 0 0}
-    .section{background:var(--card);border-radius:var(--radius);padding:18px;margin:16px 0;box-shadow:var(--shadow)}
-    .section h2{margin:0 0 8px 0;font-size:1.2rem;color:var(--navy)}
-    .desc{color:var(--muted);margin:0 0 12px 0}
-    .resource{padding:14px;border:1px solid #e5e7eb;border-radius:14px;margin:12px 0}
-    .resource h3{margin:0 0 6px 0;font-size:1.05rem}
-    .resource .rdesc{margin:0 0 12px 0;color:var(--muted)}
-    .btns{display:grid;grid-template-columns:1fr;gap:10px}
-    .btn{display:inline-block;text-align:center;text-decoration:none;padding:14px 16px;border-radius:12px;background:var(--navy);color:#fff;font-weight:700;box-shadow:var(--shadow);transition:transform .04s ease, opacity .2s ease;}
-    .btn:hover{opacity:.92}
-    .btn:active{transform:scale(.98)}
-    .btn.secondary{background:var(--crest-blue)}
-    .note{font-size:.9rem;color:#334155;background:#eff6ff;border-left:4px solid var(--crest-blue);padding:8px 10px;border-radius:8px;margin:10px 0}
-    footer{color:#64748b;font-size:.9rem;padding:16px 6px 48px;text-align:center}
-    @media (min-width:700px){.btns{grid-template-columns:repeat(2,1fr)}}
+    .wrap { max-width: 880px; margin: 0 auto; padding: 24px 20px; }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--crest-blue) 100%);
+      color: #fff;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 32px 16px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: -40%; right: -10%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .brand { display: flex; align-items: center; gap: 18px; }
+    .brand img {
+      width: 68px; height: 68px;
+      object-fit: contain; flex: 0 0 68px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.3));
+    }
+    .title {
+      font-size: 1.6rem; font-weight: 800;
+      margin: 0; letter-spacing: .3px; line-height: 1.25;
+    }
+    .subtitle {
+      font-size: 1.05rem; opacity: .85;
+      margin: 6px 0 0 0; font-weight: 400; letter-spacing: .2px;
+    }
+
+    /* ── Section Cards ── */
+    .section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 20px 0;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--card-border);
+      transition: box-shadow var(--transition);
+    }
+    .section:hover { box-shadow: var(--shadow-lg); }
+    .section h2 {
+      margin: 0 0 6px 0;
+      font-size: 1.25rem;
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: .3px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-gold);
+      display: inline-block;
+    }
+    .section h2 span[aria-hidden] { margin-right: 6px; }
+    .desc {
+      color: var(--muted);
+      margin: 12px 0 14px 0;
+      font-size: .95rem;
+      line-height: 1.55;
+    }
+
+    /* ── Resource Cards ── */
+    .resource {
+      padding: 18px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      margin: 14px 0;
+      background: #fafbfc;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .resource:hover {
+      border-color: var(--crest-blue);
+      box-shadow: var(--shadow-sm);
+    }
+    .resource h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-light);
+    }
+    .resource .rdesc {
+      margin: 0 0 14px 0;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.5;
+    }
+
+    /* ── Buttons ── */
+    .btns { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      text-decoration: none;
+      padding: 13px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--navy);
+      color: #fff;
+      font-weight: 600;
+      font-size: .92rem;
+      letter-spacing: .2px;
+      box-shadow: var(--shadow-sm);
+      transition: background var(--transition), box-shadow var(--transition), transform .1s ease;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: var(--navy-light);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+    .btn:active {
+      transform: translateY(0) scale(.98);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn:focus-visible {
+      outline: 3px solid var(--accent-gold);
+      outline-offset: 2px;
+    }
+    .btn.secondary { background: var(--crest-blue); }
+    .btn.secondary:hover { background: var(--crest-blue-light); }
+
+    /* ── Note Callout ── */
+    .note {
+      font-size: .88rem;
+      color: #1e3a5f;
+      background: linear-gradient(135deg, #eff6ff 0%, #e8f0fe 100%);
+      border-left: 4px solid var(--crest-blue);
+      padding: 14px 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 12px 0 14px 0;
+      line-height: 1.5;
+    }
+
+    /* ── Footer ── */
+    footer {
+      color: #64748b;
+      font-size: .85rem;
+      padding: 28px 6px 52px;
+      text-align: center;
+      border-top: 1px solid var(--card-border);
+      margin-top: 12px;
+      letter-spacing: .2px;
+      line-height: 1.5;
+    }
+
+    /* ── Responsive ── */
+    @media (min-width: 700px) {
+      .btns { grid-template-columns: repeat(2, 1fr); }
+      header { padding: 36px 20px 32px; }
+      .title { font-size: 1.75rem; }
+      .brand img { width: 76px; height: 76px; flex: 0 0 76px; }
+    }
+
+    /* ── Accessibility ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
       <div class="brand">
-        <img src="IMG_2434.PNG" alt="HMCS Frédérick Rolette crest (blue lion with sword)" />
+        <img src="IMG_2434.png" alt="HMCS Frédérick Rolette crest (blue lion with sword)" />
         <div>
           <h1 class="title">HMCS Frédérick Rolette – Tobacco & Vaping Cessation Resources</h1>
           <p class="subtitle">Support and resources to help you quit smoking and vaping.</p>
@@ -58,7 +216,7 @@
 
   <main class="wrap">
     <section class="section">
-      <h2>On-Base Pharmacy Support</h2>
+      <h2><span aria-hidden="true">&#x2695;</span> On-Base Pharmacy Support</h2>
       <p class="desc">CAF members can access nicotine replacement therapy (NRT) directly through the base clinic pharmacy.</p>
       <div class="resource">
         <h3>Pharmacy Tobacco Replacement Therapy Program</h3>
@@ -67,12 +225,12 @@
     </section>
 
     <section class="section">
-      <h2>Provincial Programs</h2>
+      <h2><span aria-hidden="true">&#x2693;</span> Provincial Programs</h2>
       <div class="resource">
         <h3>NSHA – Stop Smoking Program</h3>
         <p class="rdesc">Offers group and individual counselling, virtual options, and access to quit aids.</p>
         <div class="btns">
-          <a class="btn" href="https://mha.nshealth.ca/en/stop-smoking-program" target="_blank" rel="noopener">Visit NSHA Program</a>
+          <a class="btn" href="https://mha.nshealth.ca/en/stop-smoking-program" target="_blank" rel="noopener"><span aria-hidden="true">&#x2197;</span> Visit NSHA Program</a>
         </div>
       </div>
 
@@ -80,7 +238,7 @@
         <h3>Smoke-Free Nova Scotia</h3>
         <p class="rdesc">Digital resources, counselling referrals, and self-help tools.</p>
         <div class="btns">
-          <a class="btn" href="https://smokefreens.ca" target="_blank" rel="noopener">Visit Smoke-Free Nova Scotia</a>
+          <a class="btn" href="https://smokefreens.ca" target="_blank" rel="noopener"><span aria-hidden="true">&#x2197;</span> Visit Smoke-Free Nova Scotia</a>
         </div>
       </div>
 
@@ -88,35 +246,35 @@
         <h3>Tobacco Free Nova Scotia</h3>
         <p class="rdesc">Quitline, secure chat, SMS supports, quit packs, and multilingual resources.</p>
         <div class="btns">
-          <a class="btn" href="tel:811">Call Quitline 811</a>
-          <a class="btn secondary" href="sms:+19027007700?&body=SMOKEFREE">Text SMOKEFREE</a>
-          <a class="btn" href="https://tobaccofree.novascotia.ca" target="_blank" rel="noopener">Visit Website</a>
+          <a class="btn" href="tel:811"><span aria-hidden="true">&#x260E;</span> Call Quitline 811</a>
+          <a class="btn secondary" href="sms:+19027007700?body=SMOKEFREE"><span aria-hidden="true">&#x27A4;</span> Text SMOKEFREE</a>
+          <a class="btn" href="https://tobaccofree.novascotia.ca" target="_blank" rel="noopener"><span aria-hidden="true">&#x2197;</span> Visit Website</a>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>PANS – Community Pharmacy Primary Care Clinics</h2>
+      <h2><span aria-hidden="true">&#x271A;</span> PANS – Community Pharmacy Primary Care Clinics</h2>
       <div class="note"><strong>Note:</strong> Free cessation services — <em>must have a valid Nova Scotia Health Card</em>.</div>
       <p class="desc">Free smoking cessation services, including counselling, quit plans, and prescriptions.</p>
       <div class="resource">
         <h3>Find a Participating Pharmacy</h3>
         <p class="rdesc">Book online or contact the Pharmacy Association of Nova Scotia.</p>
         <div class="btns">
-          <a class="btn" href="https://pans.ns.ca/quit-or-reduce-smoking-nicotine-products" target="_blank" rel="noopener">Book Online</a>
-          <a class="btn secondary" href="tel:+19024229583">Call PANS (902-422-9583)</a>
+          <a class="btn" href="https://pans.ns.ca/quit-or-reduce-smoking-nicotine-products" target="_blank" rel="noopener"><span aria-hidden="true">&#x2197;</span> Book Online</a>
+          <a class="btn secondary" href="tel:+19024229583"><span aria-hidden="true">&#x260E;</span> Call PANS (902-422-9583)</a>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>Additional Contact</h2>
+      <h2><span aria-hidden="true">&#x2709;</span> Additional Contact</h2>
       <p class="desc">For general health promotion inquiries.</p>
       <div class="resource">
         <h3>Halifax Health Promotion Services</h3>
         <p class="rdesc">Former facilitators of base wellness programs.</p>
         <div class="btns">
-          <a class="btn" href="mailto:HFXHealthPromotion@forces.gc.ca">Email Health Promotion Services</a>
+          <a class="btn" href="mailto:HFXHealthPromotion@forces.gc.ca"><span aria-hidden="true">&#x2709;</span> Email Health Promotion Services</a>
         </div>
       </div>
     </section>
